@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import type { PropsWithChildren } from 'react';
+import { RouteFallback } from '@/components/layout/route-fallback';
 import { getDefaultAuthenticatedPath } from '@/features/auth/auth-routes';
 import { useAuth } from '@/features/auth/auth-context';
 import type { UserRole } from '@/features/auth/auth-types';
@@ -13,7 +14,7 @@ export function RoleRoute({ allow, children }: RoleRouteProps) {
   const location = useLocation();
 
   if (isAuthLoading) {
-    return null;
+    return <RouteFallback />;
   }
 
   if (!user) {
@@ -37,7 +38,7 @@ export function RoleLandingRoute() {
   const { isAuthLoading, user } = useAuth();
 
   if (isAuthLoading) {
-    return null;
+    return <RouteFallback />;
   }
 
   return <Navigate replace to={getDefaultAuthenticatedPath(user?.role)} />;

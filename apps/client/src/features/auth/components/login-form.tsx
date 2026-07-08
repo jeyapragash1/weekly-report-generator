@@ -53,7 +53,12 @@ export function LoginForm() {
   }, [form]);
 
   if (isAuthLoading) {
-    return null;
+    return (
+      <div className="flex items-center gap-3 rounded-lg border border-border bg-background px-4 py-3 text-sm text-muted-foreground" role="status" aria-live="polite">
+        <Loader2 className="h-4 w-4 animate-spin text-primary" />
+        Checking your session...
+      </div>
+    );
   }
 
   if (isAuthenticated) {

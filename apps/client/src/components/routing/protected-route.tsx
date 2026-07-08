@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import type { PropsWithChildren } from 'react';
+import { RouteFallback } from '@/components/layout/route-fallback';
 import { useAuth } from '@/features/auth/auth-context';
 
 export function ProtectedRoute({ children }: PropsWithChildren) {
@@ -7,7 +8,7 @@ export function ProtectedRoute({ children }: PropsWithChildren) {
   const location = useLocation();
 
   if (isAuthLoading) {
-    return null;
+    return <RouteFallback />;
   }
 
   if (!isAuthenticated) {
