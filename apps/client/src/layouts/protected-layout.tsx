@@ -31,7 +31,7 @@ export function ProtectedLayout() {
             </div>
             <div className="hidden h-10 w-full max-w-xs items-center gap-2 rounded-md border border-border bg-card px-3 text-sm text-muted-foreground shadow-sm lg:flex">
               <Search className="h-4 w-4" />
-              <span className="truncate">Search workspace</span>
+              <span className="truncate">Search</span>
             </div>
             <ThemeToggle />
             <UserDropdown />
