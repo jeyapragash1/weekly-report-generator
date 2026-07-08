@@ -191,10 +191,7 @@ export function ReportsShellPage() {
   }
 
   return (
-    <PageContainer
-      description="Create, review, and submit weekly reports."
-      title="Weekly Reports"
-    >
+    <PageContainer description="Create, review, and submit weekly reports." title="Weekly Reports">
       {isLoading ? <ReportsSkeleton /> : null}
 
       {!isLoading && error ? (

@@ -6,9 +6,14 @@ import { Sidebar } from '@/components/navigation/sidebar';
 import { ThemeToggle } from '@/components/navigation/theme-toggle';
 import { UserDropdown } from '@/components/navigation/user-dropdown';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/features/auth/auth-context';
+import { hasManagerAccess } from '@/features/auth/auth-routes';
+import { AiAssistant } from '@/features/ai-assistant/components/ai-assistant';
 
 export function ProtectedLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { user } = useAuth();
+  const canUseAssistant = hasManagerAccess(user?.role);
 
   return (
     <div className="flex min-h-screen bg-background text-foreground">
@@ -41,6 +46,7 @@ export function ProtectedLayout() {
           <Outlet />
         </main>
       </div>
+      {canUseAssistant ? <AiAssistant /> : null}
     </div>
   );
 }

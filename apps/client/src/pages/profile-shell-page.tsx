@@ -17,10 +17,7 @@ export function ProfileShellPage() {
   const normalizedRole = user?.role?.replace('_', ' ') ?? 'User';
 
   return (
-    <PageContainer
-      description="View your account profile and access details."
-      title="Profile"
-    >
+    <PageContainer description="View your account profile and access details." title="Profile">
       <div className="grid gap-4 xl:grid-cols-[1fr_1.6fr]">
         <section className="rounded-lg border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center gap-4">
@@ -38,9 +35,7 @@ export function ProfileShellPage() {
               <BadgeCheck className="h-4 w-4 text-primary" />
               Account status
             </div>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Your account is active.
-            </p>
+            <p className="mt-2 text-sm text-muted-foreground">Your account is active.</p>
           </div>
         </section>
 

@@ -4,7 +4,7 @@ import { authTokenStore } from '@/lib/auth-token-store';
 
 export const httpClient = axios.create({
   baseURL: clientConfig.VITE_API_BASE_URL,
-  timeout: 15_000,
+  timeout: 120_000,
   headers: {
     'Content-Type': 'application/json',
   },

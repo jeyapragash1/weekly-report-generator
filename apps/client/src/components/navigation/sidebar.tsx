@@ -44,7 +44,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
         </div>
         <nav className="flex-1 space-y-1 px-3 py-5">
-          <p className="px-3 pb-2 text-xs font-medium uppercase text-muted-foreground">Navigation</p>
+          <p className="px-3 pb-2 text-xs font-medium uppercase text-muted-foreground">
+            Navigation
+          </p>
           {navItems.map((item) => {
             const Icon = item.icon;
             const [pathname, search = ''] = item.href.split('?');

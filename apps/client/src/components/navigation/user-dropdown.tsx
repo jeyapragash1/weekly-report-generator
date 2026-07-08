@@ -32,9 +32,7 @@ export function UserDropdown() {
         <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-xs font-semibold text-primary-foreground">
           {user?.name?.slice(0, 2).toUpperCase() ?? 'ME'}
         </span>
-        <span className="hidden max-w-32 truncate text-sm md:inline">
-          {user?.name ?? 'User'}
-        </span>
+        <span className="hidden max-w-32 truncate text-sm md:inline">{user?.name ?? 'User'}</span>
         <ChevronDown className="hidden h-4 w-4 text-muted-foreground md:block" />
       </Button>
       <div

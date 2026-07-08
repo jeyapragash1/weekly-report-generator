@@ -51,10 +51,7 @@ export function SettingsShellPage() {
   }
 
   return (
-    <PageContainer
-      description="Manage your application preferences."
-      title="Settings"
-    >
+    <PageContainer description="Manage your application preferences." title="Settings">
       <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
         <section className="rounded-lg border border-border bg-card p-5 shadow-sm">
           <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
@@ -135,8 +132,8 @@ export function SettingsShellPage() {
               Weekly Report Generator
             </div>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              This application helps teams track weekly progress, blockers, and plans.
-              Preferences are applied immediately.
+              This application helps teams track weekly progress, blockers, and plans. Preferences
+              are applied immediately.
             </p>
             <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
               <Sun className="h-3.5 w-3.5" />
