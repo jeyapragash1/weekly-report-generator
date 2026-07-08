@@ -51,7 +51,7 @@ export const getMyReports: RequestHandler = asyncHandler(async (request, respons
   const reports = await reportsService.getMyReports(userId, request.query);
 
   response.status(HttpStatus.OK).json({
-    data: reports,
+    data: reports ?? [],
   });
 });
 

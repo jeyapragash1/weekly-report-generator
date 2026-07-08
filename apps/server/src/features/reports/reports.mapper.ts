@@ -1,11 +1,19 @@
-import type { Prisma, WeeklyReport } from '@prisma/client';
+import type { Prisma, Project, WeeklyReport } from '@prisma/client';
+
+type WeeklyReportWithProject = WeeklyReport & {
+  project: Project;
+};
 
 export type WeeklyReportDto = {
   id: string;
   userId: string;
   weekStartDate: Date;
   weekEndDate: Date;
-  project: string;
+  project: {
+    id: string;
+    name: string;
+    status: Project['status'];
+  };
   tasksCompleted: string;
   tasksPlanned: string;
   blockers: string;
@@ -21,13 +29,17 @@ function decimalToNumber(value: Prisma.Decimal | null) {
   return value === null ? null : value.toNumber();
 }
 
-export function toWeeklyReportDto(report: WeeklyReport): WeeklyReportDto {
+export function toWeeklyReportDto(report: WeeklyReportWithProject): WeeklyReportDto {
   return {
     id: report.id,
     userId: report.userId,
     weekStartDate: report.weekStartDate,
     weekEndDate: report.weekEndDate,
-    project: report.project,
+    project: {
+      id: report.project.id,
+      name: report.project.name,
+      status: report.project.status,
+    },
     tasksCompleted: report.tasksCompleted,
     tasksPlanned: report.tasksPlanned,
     blockers: report.blockers,

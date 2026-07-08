@@ -10,7 +10,7 @@ const isoDateSchema = z
 const reportBaseSchema = z.object({
   weekStartDate: isoDateSchema,
   weekEndDate: isoDateSchema,
-  project: z.string().trim().min(2).max(120),
+  projectId: z.string().min(1),
   tasksCompleted: z.string().trim().min(1).max(5000),
   tasksPlanned: z.string().trim().min(1).max(5000),
   blockers: z.string().trim().min(1).max(3000),

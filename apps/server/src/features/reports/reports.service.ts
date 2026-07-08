@@ -1,6 +1,7 @@
 import { Prisma, ReportStatus } from '@prisma/client';
 import { HttpStatus } from '../../constants/http.js';
 import { AppError } from '../../shared/errors/app-error.js';
+import { projectsRepository } from '../projects/projects.repository.js';
 import { toWeeklyReportDto } from './reports.mapper.js';
 import { reportsRepository } from './reports.repository.js';
 import type {
@@ -26,13 +27,13 @@ async function getOwnedReport(reportId: string, userId: string) {
 async function ensureUniqueWeeklyReport(input: {
   userId: string;
   weekStartDate: Date;
-  project: string;
+  projectId: string;
   ignoreReportId?: string;
 }) {
   const existingReport = await reportsRepository.findByUserWeekAndProject({
     userId: input.userId,
     weekStartDate: input.weekStartDate,
-    project: input.project,
+    projectId: input.projectId,
   });
 
   if (existingReport && existingReport.id !== input.ignoreReportId) {
@@ -43,12 +44,25 @@ async function ensureUniqueWeeklyReport(input: {
   }
 }
 
+async function ensureProjectCanReceiveReports(projectId: string) {
+  const project = await projectsRepository.findById(projectId);
+
+  if (!project) {
+    throw new AppError('Project not found', HttpStatus.NOT_FOUND);
+  }
+
+  if (project.status === 'ARCHIVED') {
+    throw new AppError('Archived projects cannot receive new reports', HttpStatus.CONFLICT);
+  }
+}
+
 export const reportsService = {
   async createDraft(userId: string, input: CreateReportInput) {
+    await ensureProjectCanReceiveReports(input.projectId);
     await ensureUniqueWeeklyReport({
       userId,
       weekStartDate: input.weekStartDate,
-      project: input.project,
+      projectId: input.projectId,
     });
 
     try {
@@ -80,16 +94,20 @@ export const reportsService = {
 
     const nextWeekStartDate = input.weekStartDate ?? report.weekStartDate;
     const nextWeekEndDate = input.weekEndDate ?? report.weekEndDate;
-    const nextProject = input.project ?? report.project;
+    const nextProjectId = input.projectId ?? report.projectId;
 
     if (nextWeekEndDate <= nextWeekStartDate) {
       throw new AppError('Week end date must be after week start date', HttpStatus.BAD_REQUEST);
     }
 
+    if (input.projectId) {
+      await ensureProjectCanReceiveReports(input.projectId);
+    }
+
     await ensureUniqueWeeklyReport({
       userId,
       weekStartDate: nextWeekStartDate,
-      project: nextProject,
+      projectId: nextProjectId,
       ignoreReportId: report.id,
     });
 

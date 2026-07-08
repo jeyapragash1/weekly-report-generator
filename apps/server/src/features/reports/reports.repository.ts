@@ -5,19 +5,28 @@ export const reportsRepository = {
   createDraft(input: Prisma.WeeklyReportUncheckedCreateInput) {
     return prisma.weeklyReport.create({
       data: input,
+      include: {
+        project: true,
+      },
     });
   },
 
   findById(id: string) {
     return prisma.weeklyReport.findUnique({
       where: { id },
+      include: {
+        project: true,
+      },
     });
   },
 
-  findByUserWeekAndProject(input: { userId: string; weekStartDate: Date; project: string }) {
+  findByUserWeekAndProject(input: { userId: string; weekStartDate: Date; projectId: string }) {
     return prisma.weeklyReport.findUnique({
       where: {
-        userId_project_weekStartDate: input,
+        userId_projectId_weekStartDate: input,
+      },
+      include: {
+        project: true,
       },
     });
   },
@@ -26,7 +35,10 @@ export const reportsRepository = {
     return prisma.weeklyReport.findMany({
       where: {
         userId: input.userId,
-        status: input.status,
+        ...(input.status ? { status: input.status } : {}),
+      },
+      include: {
+        project: true,
       },
       orderBy: [{ weekStartDate: 'desc' }, { createdAt: 'desc' }],
     });
@@ -36,6 +48,9 @@ export const reportsRepository = {
     return prisma.weeklyReport.update({
       where: { id },
       data: input,
+      include: {
+        project: true,
+      },
     });
   },
 
