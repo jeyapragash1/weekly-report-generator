@@ -73,7 +73,7 @@ export function ProjectsShellPage() {
         setCreateOpen(false);
         showToast({
           title: 'Project created',
-          description: `${project.name} is ready for weekly reports.`,
+          description: `${project.name} has been added.`,
           variant: 'success',
         });
       },
@@ -136,7 +136,7 @@ export function ProjectsShellPage() {
 
   return (
     <PageContainer
-      description="Create, organize, and archive the projects that weekly reports belong to."
+      description="Create and manage the projects used in weekly reporting."
       title="Projects"
     >
       {projectsQuery.isLoading ? <ProjectsSkeleton /> : null}

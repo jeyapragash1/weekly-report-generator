@@ -15,7 +15,7 @@ export function NotFoundPage() {
         </p>
         <h1 className="mt-2 text-2xl font-semibold tracking-normal">Page not found</h1>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          The route you opened does not exist or has been moved. Try one of the safe paths below.
+          The page you are looking for cannot be found. Choose a destination below.
         </p>
 
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">

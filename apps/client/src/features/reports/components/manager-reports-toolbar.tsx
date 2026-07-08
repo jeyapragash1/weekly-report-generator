@@ -42,7 +42,7 @@ export function ManagerReportsToolbar({
               className="pl-9"
               id="manager-report-search"
               onChange={(event) => setFilter('search', event.target.value)}
-              placeholder="Search by member, email, or project"
+              placeholder="Search by member or project"
               value={filters.search}
             />
           </div>

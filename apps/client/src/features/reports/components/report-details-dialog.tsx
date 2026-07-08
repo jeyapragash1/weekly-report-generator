@@ -69,7 +69,7 @@ export function ReportDetailsDialog({ onClose, open, report }: ReportDetailsDial
                   <Clock3 className="h-4 w-4" />
                   Hours
                 </div>
-                <p className="mt-2 text-sm font-medium">{report.hoursWorked ?? 'Not tracked'}</p>
+                <p className="mt-2 text-sm font-medium">{report.hoursWorked ?? 'Not provided'}</p>
               </div>
               <div className="rounded-lg border border-border bg-background p-3">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -85,7 +85,7 @@ export function ReportDetailsDialog({ onClose, open, report }: ReportDetailsDial
                 ['Tasks Completed', report.tasksCompleted],
                 ['Tasks Planned', report.tasksPlanned],
                 ['Blockers', report.blockers],
-                ['Notes', report.notes || 'No notes provided.'],
+                ['Notes', report.notes || 'No notes added.'],
               ].map(([label, value]) => (
                 <section className="rounded-lg border border-border bg-background p-4" key={label}>
                   <h3 className="text-sm font-medium">{label}</h3>

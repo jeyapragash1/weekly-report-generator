@@ -31,7 +31,7 @@ export function ProjectsToolbar({
             aria-label="Search projects by name"
             className="pl-9"
             onChange={(event) => onSearchChange(event.target.value)}
-            placeholder="Search projects"
+            placeholder="Search"
             value={search}
           />
         </div>

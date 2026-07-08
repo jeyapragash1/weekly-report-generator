@@ -35,7 +35,7 @@ export function RegisterForm() {
       login(result.tokens, result.user);
       showToast({
         title: 'Account created',
-        description: 'Your workspace session is ready.',
+        description: 'Your account has been created and signed in.',
         variant: 'success',
       });
       void navigate(getDefaultAuthenticatedPath(result.user.role), { replace: true });

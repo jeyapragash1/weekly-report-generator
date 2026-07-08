@@ -52,7 +52,7 @@ export function SettingsShellPage() {
 
   return (
     <PageContainer
-      description="Manage your workspace preferences and application behavior."
+      description="Manage your application preferences."
       title="Settings"
     >
       <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
@@ -96,7 +96,7 @@ export function SettingsShellPage() {
                 onChange={(event) => form.setValue('language', event.target.value as 'en' | 'id')}
                 value={form.watch('language')}
               >
-                <option value="en">English (default)</option>
+                <option value="en">English</option>
                 <option value="id">Bahasa Indonesia</option>
               </Select>
             </div>
@@ -135,8 +135,8 @@ export function SettingsShellPage() {
               Weekly Report Generator
             </div>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              This workspace helps teams track weekly progress, blockers, and planning outcomes.
-              Settings are currently stored in-browser for a lightweight experience.
+              This application helps teams track weekly progress, blockers, and plans.
+              Preferences are applied immediately.
             </p>
             <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
               <Sun className="h-3.5 w-3.5" />

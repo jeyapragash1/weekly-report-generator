@@ -13,12 +13,12 @@ export function EmptyProjects({ hasFilters, onCreate }: EmptyProjectsProps) {
         <FolderPlus className="h-7 w-7" />
       </div>
       <h2 className="mt-5 text-lg font-semibold tracking-normal">
-        {hasFilters ? 'No projects match your filters' : 'No projects have been created yet.'}
+        {hasFilters ? 'No projects match the selected filters' : 'No projects yet'}
       </h2>
       <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-muted-foreground">
         {hasFilters
-          ? 'Adjust the search, status filter, or sorting option to find a project.'
-          : 'Create your first project so team members can start attaching weekly reports to it.'}
+          ? 'Try adjusting search, status, or sorting.'
+          : 'Create a project to start collecting weekly reports.'}
       </p>
       {!hasFilters ? (
         <Button className="mt-6" onClick={onCreate} type="button">

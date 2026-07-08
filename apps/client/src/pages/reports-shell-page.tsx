@@ -105,7 +105,7 @@ export function ReportsShellPage() {
         setCreateOpen(false);
         showToast({
           title: 'Draft saved',
-          description: `${report.project.name} report was created.`,
+          description: `${report.project.name} draft created.`,
           variant: 'success',
         });
       },
@@ -131,7 +131,7 @@ export function ReportsShellPage() {
           setEditingReport(null);
           showToast({
             title: 'Report updated',
-            description: `${report.project.name} report was updated.`,
+            description: `${report.project.name} report updated.`,
             variant: 'success',
           });
         },
@@ -152,7 +152,7 @@ export function ReportsShellPage() {
         setSubmittingReport(null);
         showToast({
           title: 'Report submitted',
-          description: `${report.project.name} report is now submitted.`,
+          description: `${report.project.name} report submitted.`,
           variant: 'success',
         });
       },
@@ -176,7 +176,7 @@ export function ReportsShellPage() {
         setDeletingReport(null);
         showToast({
           title: 'Draft deleted',
-          description: 'The draft report was deleted.',
+          description: 'Draft report deleted.',
           variant: 'success',
         });
       },
@@ -192,7 +192,7 @@ export function ReportsShellPage() {
 
   return (
     <PageContainer
-      description="Create, review, submit, and manage weekly progress reports."
+      description="Create, review, and submit weekly reports."
       title="Weekly Reports"
     >
       {isLoading ? <ReportsSkeleton /> : null}

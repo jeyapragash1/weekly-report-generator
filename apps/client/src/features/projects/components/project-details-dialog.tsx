@@ -62,7 +62,7 @@ export function ProjectDetailsDialog({ onClose, open, project }: ProjectDetailsD
               <div>
                 <p className="text-sm font-medium">Description</p>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  {project.description || 'No description provided.'}
+                  {project.description || 'No description.'}
                 </p>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">

@@ -44,7 +44,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </div>
         </div>
         <nav className="flex-1 space-y-1 px-3 py-5">
-          <p className="px-3 pb-2 text-xs font-medium uppercase text-muted-foreground">Workspace</p>
+          <p className="px-3 pb-2 text-xs font-medium uppercase text-muted-foreground">Navigation</p>
           {navItems.map((item) => {
             const Icon = item.icon;
             const [pathname, search = ''] = item.href.split('?');
@@ -84,7 +84,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         </nav>
         <div className="border-t border-border/80 p-4">
           <div className="rounded-lg border border-border bg-background p-3">
-            <p className="text-sm font-medium">Workspace status</p>
+            <p className="text-sm font-medium">Status</p>
             <p className="mt-1 text-xs leading-5 text-muted-foreground">
               Access dashboard, reports, projects, and account settings from this menu.
             </p>

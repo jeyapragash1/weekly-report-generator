@@ -112,7 +112,7 @@ export function ReportForm({
           <Textarea
             disabled={disabled}
             id={`${formId}-${name}`}
-            placeholder={`Enter ${label.toLowerCase()}`}
+            placeholder={label}
             {...form.register(name as keyof ReportFormValues)}
           />
           {form.formState.errors[name as keyof ReportFormValues]?.message ? (
@@ -130,7 +130,7 @@ export function ReportForm({
           id={`${formId}-hours`}
           max={168}
           min={0}
-          placeholder="40"
+          placeholder="e.g. 40"
           step="0.25"
           type="number"
           {...form.register('hoursWorked', {

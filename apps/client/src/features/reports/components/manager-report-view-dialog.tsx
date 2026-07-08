@@ -46,7 +46,7 @@ export function ManagerReportViewDialog({ onClose, open, report }: ManagerReport
               <div>
                 <h2 className="text-lg font-semibold tracking-normal">Team Report</h2>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Submission insight from dashboard activity.
+                  Review submission details for this report.
                 </p>
               </div>
               <Button

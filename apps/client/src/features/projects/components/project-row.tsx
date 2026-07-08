@@ -26,7 +26,7 @@ export function ProjectRow({ onArchive, onEdit, onView, project }: ProjectRowPro
         <div className="min-w-0">
           <p className="font-medium text-foreground">{project.name}</p>
           <p className="mt-1 line-clamp-2 max-w-lg text-sm leading-6 text-muted-foreground">
-            {project.description || 'No description provided.'}
+            {project.description || 'No description.'}
           </p>
         </div>
       </td>

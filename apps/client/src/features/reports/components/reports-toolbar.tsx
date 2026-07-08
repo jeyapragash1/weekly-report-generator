@@ -43,7 +43,7 @@ export function ReportsToolbar({
             aria-label="Search reports by project"
             className="pl-9"
             onChange={(event) => onSearchChange(event.target.value)}
-            placeholder="Search by project"
+            placeholder="Search reports"
             value={search}
           />
         </div>

@@ -92,7 +92,7 @@ export function LoginForm() {
         Sign in
       </Button>
       <p className="text-center text-sm text-muted-foreground">
-        New to the workspace?{' '}
+        New here?{' '}
         <Link className="font-medium text-primary hover:underline" to="/register">
           Create an account
         </Link>

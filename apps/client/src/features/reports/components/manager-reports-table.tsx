@@ -77,7 +77,7 @@ export function ManagerReportsTable({ onView, reports }: ManagerReportsTableProp
       </div>
       <div className="flex items-center gap-2 border-t border-border px-4 py-3 text-xs text-muted-foreground">
         <FileClock className="h-4 w-4" />
-        Report details are read-only on this page and sourced from existing dashboard APIs.
+        Use View to review submission details for each report.
       </div>
     </section>
   );

@@ -7,18 +7,18 @@ export function ProfileShellPage() {
   const { user } = useAuth();
   const initials = useMemo(
     () =>
-      (user?.name ?? 'Team Member')
+      (user?.name ?? 'User')
         .split(' ')
         .slice(0, 2)
         .map((part) => part.charAt(0).toUpperCase())
         .join(''),
     [user?.name],
   );
-  const normalizedRole = user?.role?.replace('_', ' ') ?? 'Authenticated user';
+  const normalizedRole = user?.role?.replace('_', ' ') ?? 'User';
 
   return (
     <PageContainer
-      description="Review your personal account profile and access details."
+      description="View your account profile and access details."
       title="Profile"
     >
       <div className="grid gap-4 xl:grid-cols-[1fr_1.6fr]">
@@ -28,7 +28,7 @@ export function ProfileShellPage() {
               {initials}
             </div>
             <div className="min-w-0">
-              <h2 className="truncate text-lg font-semibold">{user?.name ?? 'Team member'}</h2>
+              <h2 className="truncate text-lg font-semibold">{user?.name ?? 'User'}</h2>
               <p className="truncate text-sm text-muted-foreground">{normalizedRole}</p>
             </div>
           </div>
@@ -39,7 +39,7 @@ export function ProfileShellPage() {
               Account status
             </div>
             <p className="mt-2 text-sm text-muted-foreground">
-              Active account with authenticated workspace access.
+              Your account is active.
             </p>
           </div>
         </section>
@@ -60,7 +60,7 @@ export function ProfileShellPage() {
             <div className="rounded-md border border-border bg-background p-4">
               <div className="flex items-center gap-2 text-sm font-medium">
                 <ShieldCheck className="h-4 w-4 text-primary" />
-                Access Role
+                Role
               </div>
               <p className="mt-2 text-sm text-muted-foreground">{normalizedRole}</p>
             </div>
@@ -76,7 +76,7 @@ export function ProfileShellPage() {
                 <CalendarClock className="h-4 w-4 text-primary" />
                 Account type
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">Workspace user profile</p>
+              <p className="mt-2 text-sm text-muted-foreground">Standard account</p>
             </div>
           </div>
         </section>

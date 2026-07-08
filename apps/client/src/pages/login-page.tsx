@@ -5,7 +5,7 @@ export function LoginPage() {
   return (
     <AuthShell
       description="Sign in to manage weekly reports, project visibility, and team review workflows."
-      eyebrow="Secure workspace"
+      eyebrow="Secure access"
       title="Sign in"
     >
       <LoginForm />

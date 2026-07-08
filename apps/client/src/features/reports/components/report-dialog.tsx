@@ -73,7 +73,7 @@ export function ReportDialog({
                 <p className="mt-1 text-sm text-muted-foreground">
                   {isSubmitted
                     ? 'Submitted reports are read-only and cannot be edited.'
-                    : 'Save progress as a draft before submitting.'}
+                    : 'Save as draft before final submission.'}
                 </p>
               </div>
               <Button

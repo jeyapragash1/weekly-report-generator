@@ -46,7 +46,7 @@ export function ProjectForm({
           autoComplete="off"
           disabled={disabled}
           id={`${formId}-name`}
-          placeholder="Customer portal redesign"
+          placeholder="e.g. Mobile app migration"
           {...form.register('name')}
         />
         {form.formState.errors.name ? (
@@ -60,7 +60,7 @@ export function ProjectForm({
           className="flex min-h-28 w-full resize-y rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50"
           disabled={disabled}
           id={`${formId}-description`}
-          placeholder="Optional project context for the team"
+          placeholder="Add a short project summary"
           {...form.register('description')}
         />
         {form.formState.errors.description ? (

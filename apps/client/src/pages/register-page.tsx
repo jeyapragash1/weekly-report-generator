@@ -4,7 +4,7 @@ import { RegisterForm } from '@/features/auth/components/register-form';
 export function RegisterPage() {
   return (
     <AuthShell
-      description="Create a team member or manager account for the weekly reporting workspace."
+      description="Create a team member or manager account for weekly reporting."
       eyebrow="Start reporting"
       title="Create account"
     >
