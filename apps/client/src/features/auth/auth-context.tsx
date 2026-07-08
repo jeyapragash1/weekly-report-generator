@@ -1,20 +1,21 @@
-import { createContext, useContext, useMemo, useState, type PropsWithChildren } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type PropsWithChildren,
+} from 'react';
 import { httpClient } from '@/api/http-client';
+import { getCurrentUserRequest } from '@/features/auth/auth-api';
 import { authTokenStore } from '@/lib/auth-token-store';
-
-type UserRole = 'TEAM_MEMBER' | 'MANAGER' | 'ADMIN';
-
-type AuthUser = {
-  id: string;
-  name: string;
-  email: string;
-  role: UserRole;
-};
+import type { AuthTokens, AuthUser } from '@/features/auth/auth-types';
 
 type AuthContextValue = {
   user: AuthUser | null;
+  isAuthLoading: boolean;
   isAuthenticated: boolean;
-  login: (tokens: { accessToken: string; refreshToken: string }, user: AuthUser) => void;
+  login: (tokens: AuthTokens, user: AuthUser) => void;
   logout: () => Promise<void>;
 };
 
@@ -22,14 +23,52 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: PropsWithChildren) {
   const [user, setUser] = useState<AuthUser | null>(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(Boolean(authTokenStore.getAccessToken()));
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function hydrateCurrentUser() {
+      if (!authTokenStore.getAccessToken()) {
+        setIsAuthLoading(false);
+        return;
+      }
+
+      try {
+        const currentUser = await getCurrentUserRequest();
+
+        if (isMounted) {
+          setUser(currentUser);
+        }
+      } catch {
+        authTokenStore.clearTokens();
+
+        if (isMounted) {
+          setUser(null);
+        }
+      } finally {
+        if (isMounted) {
+          setIsAuthLoading(false);
+        }
+      }
+    }
+
+    void hydrateCurrentUser();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const value = useMemo<AuthContextValue>(
     () => ({
       user,
+      isAuthLoading,
       isAuthenticated: Boolean(authTokenStore.getAccessToken()),
       login(tokens, nextUser) {
         authTokenStore.setTokens(tokens);
         setUser(nextUser);
+        setIsAuthLoading(false);
       },
       async logout() {
         const refreshToken = authTokenStore.getRefreshToken();
@@ -42,7 +81,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         setUser(null);
       },
     }),
-    [user],
+    [isAuthLoading, user],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

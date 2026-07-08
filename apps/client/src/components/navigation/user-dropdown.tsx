@@ -33,7 +33,7 @@ export function UserDropdown() {
           {user?.name?.slice(0, 2).toUpperCase() ?? 'ME'}
         </span>
         <span className="hidden max-w-32 truncate text-sm md:inline">
-          {user?.name ?? 'Account'}
+          {user?.name ?? 'User'}
         </span>
         <ChevronDown className="hidden h-4 w-4 text-muted-foreground md:block" />
       </Button>
@@ -50,15 +50,15 @@ export function UserDropdown() {
               {user?.name?.slice(0, 2).toUpperCase() ?? 'ME'}
             </span>
             <div className="min-w-0">
-              <p className="truncate text-sm font-medium">{user?.name ?? 'Signed in user'}</p>
+              <p className="truncate text-sm font-medium">{user?.name ?? 'User'}</p>
               <p className="truncate text-xs text-muted-foreground">
-                {user?.email ?? 'No email loaded'}
+                {user?.email ?? 'No email available'}
               </p>
             </div>
           </div>
           <div className="mt-3 inline-flex items-center gap-1 rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground">
             <ShieldCheck className="h-3.5 w-3.5" />
-            {user?.role ?? 'Authenticated'}
+            {user?.role ?? 'User'}
           </div>
         </div>
         <button

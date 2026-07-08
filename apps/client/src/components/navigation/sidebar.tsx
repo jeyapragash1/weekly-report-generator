@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { APP_NAME } from '@/constants/app';
-import { mainNavItems } from '@/components/navigation/nav-items';
+import { getMainNavItems } from '@/components/navigation/nav-items';
+import { useAuth } from '@/features/auth/auth-context';
 import { cn } from '@/lib/utils';
 
 type SidebarProps = {
@@ -10,6 +11,10 @@ type SidebarProps = {
 };
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const { user } = useAuth();
+  const location = useLocation();
+  const navItems = getMainNavItems(user?.role);
+
   return (
     <>
       <button
@@ -34,31 +39,36 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             </div>
             <div className="min-w-0">
               <p className="truncate text-sm font-semibold tracking-normal">{APP_NAME}</p>
-              <p className="truncate text-xs text-muted-foreground">Weekly operating system</p>
+              <p className="truncate text-xs text-muted-foreground">Weekly reporting platform</p>
             </div>
           </div>
         </div>
         <nav className="flex-1 space-y-1 px-3 py-5">
           <p className="px-3 pb-2 text-xs font-medium uppercase text-muted-foreground">Workspace</p>
-          {mainNavItems.map((item) => {
+          {navItems.map((item) => {
             const Icon = item.icon;
+            const [pathname, search = ''] = item.href.split('?');
+            const hasSearch = search.length > 0;
+            const isActiveItem = hasSearch
+              ? location.pathname === pathname && location.search === `?${search}`
+              : location.pathname === pathname && (!item.end || location.search === '');
 
             return (
               <NavLink
-                className={({ isActive }) =>
+                className={() =>
                   cn(
                     'relative flex h-11 items-center gap-3 rounded-md px-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary/70 hover:text-foreground',
-                    isActive && 'bg-secondary text-foreground shadow-sm',
+                    isActiveItem && 'bg-secondary text-foreground shadow-sm',
                   )
                 }
-                end={item.href === '/'}
+                end={item.end}
                 key={item.href}
                 onClick={onClose}
                 to={item.href}
               >
-                {({ isActive }) => (
+                {() => (
                   <>
-                    {isActive ? (
+                    {isActiveItem ? (
                       <motion.span
                         className="absolute left-0 h-6 w-1 rounded-r-full bg-primary"
                         layoutId="sidebar-active-indicator"
@@ -74,9 +84,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         </nav>
         <div className="border-t border-border/80 p-4">
           <div className="rounded-lg border border-border bg-background p-3">
-            <p className="text-sm font-medium">Production shell</p>
+            <p className="text-sm font-medium">Workspace status</p>
             <p className="mt-1 text-xs leading-5 text-muted-foreground">
-              Routes and layout are ready for the next feature layer.
+              Access dashboard, reports, projects, and account settings from this menu.
             </p>
           </div>
         </div>
